@@ -1,0 +1,25 @@
+{
+  "name": "hfstol-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "npm run compile && mocha --require @babel/register",
+    "compile": "npx babel src --out-dir lib",
+    "scratch": "npm run compile && node lib/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "mocha": "^6.2.0",
+    "npx": "^10.2.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4"
+  }
+}
