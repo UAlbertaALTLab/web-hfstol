@@ -40,24 +40,52 @@ class Alphabet {
         let progress = 0
 
         for (let i = 0; i < number_of_symbols; i++) {
-            let symbol = ''
+            // console.log(i)
+            const symbol = []
             while (true) {
                 let byte = file.readUInt8(alphabetStart + progress)
+                // console.log(byte)
                 progress++
                 if (byte === 0) {
-                    if (symbol.length === 4 && symbol.charAt(0) === '@' && symbol.slice(-1) === '@' && symbol.charAt(2) === '.' && 'PNRDCU'.includes(symbol.charAt(1))) {
+                    const symbol_str = Buffer.from(symbol).toString()
+                    console.log(symbol_str)
+                    if (symbol_str.length > 4 && symbol_str.charAt(0) === '@' && symbol_str.slice(-1) === '@' && symbol_str.charAt(2) === '.' && 'PNRDCU'.includes(symbol_str.charAt(1))) {
                         let [op, feat, val] = ['','','']
-
-
+                        const parts = symbol_str.slice(1,-1).split('.')
+                        if (parts.length === 2){
+                            [op, feat] = parts
+                        }
+                        else if (parts.length === 3){
+                            [op, feat, val] = parts
+                        }
+                        else{
+                            this.keyTable.push(symbol_str)
+                            break
+                        }
+                        this.flagDiacriticOperations[i] = new FlagDiacriticOperation(op, feat, val)
+                        this.keyTable.push('')
+                        break
                     }
+                    this.keyTable.push('')
+                    break
+
                 }
-
-
+                symbol.push(byte)
             }
-
         }
+        this.keyTable[0] = ''
     }
 }
 
+
+class FlagDiacriticOperation{
+
+    constructor(op, feat, val){
+        this.op = op
+        this.feat = feat
+        this.val = val
+
+    }
+}
 
 export {Header, Alphabet}

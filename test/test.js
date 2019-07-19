@@ -3,10 +3,10 @@ let path = require('path');
 
 // import {OlTransducer} from "../lib/hfst_lookup";
 
-let thing = require('../lib/index.js')
+let hfstol = require('../lib/index.js')
 
 describe('OlTransducer', function() {
-    // const lmao = new OlTransducer(path.join(__dirname, 'fixtures', 'crk-descriptive-analyzer.hfstol'));
+    const lmao = new hfstol.OlTransducer(path.join(__dirname, 'fixtures', 'crk-descriptive-analyzer.hfstol'));
 
     // before('some long setup', function(done) {
     //
@@ -15,7 +15,7 @@ describe('OlTransducer', function() {
     describe('Header', function() {
         it('should return -1 when the value is not present', function() {
 
-            console.log(thing.lol)
+            // console.log(thing.lol)
             // console.log(lmao.header.a);
             // console.log(lmao.handle);
             //

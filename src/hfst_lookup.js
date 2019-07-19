@@ -1,5 +1,5 @@
 let fs = require('fs');
-import {Header} from "./shared";
+import {Alphabet, Header} from "./shared"
 
 
 class OlTransducer{
@@ -8,7 +8,7 @@ class OlTransducer{
         const handle = fs.readFileSync(filename);
         this.handle = handle;
         this.header = new Header(handle);
-
+        this.alphabet = new Alphabet(handle, this.header.headerEnd, this.header.number_of_symbols)
     }
 
 
